@@ -1,64 +1,69 @@
-import { BookOpen, MessageCircle, Users, Mic, Lightbulb, Shield, Sparkles, Target, Zap, Star, Quote, Award, CheckCircle } from "lucide-react";
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Shield, Zap, Layers, Target, Eye, RotateCcw, Sparkles, BookOpen } from 'lucide-react';
 
-const chapters = [
-  { 
-    icon: Shield, 
-    title: "Conquer Stage Fear", 
-    desc: "Proven techniques to eliminate nervousness before you speak",
+// 6 Strategic Pillars from Table of Contents
+const strategicPillars = [
+  {
+    id: "pillar-1",
+    icon: Shield,
+    title: "The Blank Mind Architecture",
+    chapter: "Chapter 1",
+    headline: "The End of the Frozen Mind",
+    description: "Understand exactly why intelligent people struggle most under pressure and how to stop your words from dissolving when it matters.",
     featured: true,
     color: "from-red-500 to-orange-500"
   },
-  { 
-    icon: MessageCircle, 
-    title: "The STAR Framework", 
-    desc: "Structure any answer in 30 seconds flat — interviews, vivas, anywhere",
+  {
+    id: "pillar-2",
+    icon: Layers,
+    title: "The Universal Clarity Framework",
+    chapter: "Chapter 3",
+    headline: "The CMC Mastery System",
+    description: "Master the missing skill nobody teaches. A plug-and-play framework to organize complex thoughts into clear, structured responses instantly.",
     featured: false,
     color: "from-blue-500 to-cyan-500"
   },
-  { 
-    icon: Lightbulb, 
-    title: "Think on Your Feet", 
-    desc: "Stop blanking out. Train your brain to respond instantly",
+  {
+    id: "pillar-3",
+    icon: Zap,
+    title: "High-Pressure Thinking",
+    chapter: "Chapter 4",
+    headline: "The 30-Second Reset",
+    description: "Learn the one rule that saves you when memorization fails. Control the pause to create professional authority in any conversation.",
     featured: false,
     color: "from-green-500 to-emerald-500"
   },
-  { 
-    icon: Users, 
-    title: "Master Group Dynamics", 
-    desc: "Lead meetings and discussions with confidence and authority",
+  {
+    id: "pillar-4",
+    icon: Eye,
+    title: "Non-Verbal Authority",
+    chapter: "Chapter 6",
+    headline: "Visual & Environmental Clarity",
+    description: "Structure your appearance like you structure your thoughts. A repeatable system for grooming and presence that signals instant credibility.",
     featured: false,
     color: "from-purple-500 to-pink-500"
   },
-  { 
-    icon: Mic, 
-    title: "Voice Power", 
-    desc: "Develop a commanding presence that demands attention",
-    featured: false,
+  {
+    id: "pillar-5",
+    icon: RotateCcw,
+    title: "The Personal Laboratory",
+    chapter: "Chapter 8",
+    headline: "The Record & Review Loop",
+    description: "The exact system for lifelong mastery. Learn how to separate your vocal, visual, and verbal image to refine your presence daily.",
+    featured: true,
     color: "from-yellow-500 to-amber-500"
   },
-  { 
-    icon: BookOpen, 
-    title: "Daily Practice Rituals", 
-    desc: "5-minute daily habits that transform your communication in 30 days",
-    featured: true,
-    color: "from-orange-500 to-red-500"
-  },
   {
-    icon: Target,
-    title: "Interview Success",
-    desc: "Turn interviews into conversations where you naturally shine",
+    id: "pillar-6",
+    icon: Sparkles,
+    title: "The Influence Field Guide",
+    chapter: "Bonus",
+    headline: "The Story Compression Toolkit",
+    description: "Advanced tools for high-stakes impact: The Rule of Three, Contrast Principles, and Point-Reason-Impact frameworks.",
     featured: false,
     color: "from-indigo-500 to-purple-500"
-  },
-  {
-    icon: Zap,
-    title: "Confidence Boosters",
-    desc: "Instant techniques to feel confident in any situation",
-    featured: true,
-    color: "from-orange-500 to-red-500"
   }
 ];
 
@@ -91,7 +96,7 @@ const BookBreakdown = () => {
   } as const;
 
   return (
-    <section ref={ref} className="py-24 px-4 bg-rich-black relative overflow-hidden">
+    <section ref={ref} className="py-24 px-4 bg-[#0A0A0A] relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-brand-yellow/20 to-transparent rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-brand-yellow/10 to-transparent rounded-full blur-3xl" />
@@ -104,57 +109,80 @@ const BookBreakdown = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-display text-fluid-3xl lg:text-fluid-4xl font-bold mb-4 text-white">
-            What You'll Learn Inside
+            What You'll <span className="text-[#FACC15]">Learn</span>
           </h2>
-          <p className="text-soft-gray text-fluid-lg max-w-3xl mx-auto leading-relaxed">
-            Actionable chapters designed for real-world impact — not textbook theory. Each chapter builds on the previous one for exponential growth.
+          <p className="text-white text-fluid-lg max-w-3xl mx-auto leading-relaxed">
+            6 Strategic Pillars derived from the book's Table of Contents — A complete curriculum for communication mastery
           </p>
         </motion.div>
 
-        {/* Bento Box Grid - 6C Framework with Strict Aspect Ratios */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {chapters.map((chapter, i) => (
+        {/* Strategic Pillars Grid - 6 Pillars with Symmetric Layout */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {strategicPillars.map((pillar, i) => (
             <motion.div
-              key={chapter.title}
+              key={pillar.id}
               className={`
-                relative overflow-hidden rounded-2xl p-6 border transition-all duration-300 flex flex-col h-full
-                ${chapter.featured 
-                  ? 'lg:col-span-2 lg:row-span-2 bg-gradient-to-br ' + chapter.color + ' text-white' 
-                  : 'bg-rich-black border-gray-200 hover:border-brand-yellow/50'
+                relative overflow-hidden rounded-2xl p-6 border transition-all duration-300 flex flex-col min-h-[250px] h-full
+                ${pillar.featured 
+                  ? 'bg-gradient-to-br ' + pillar.color + ' text-white' 
+                  : 'bg-[#121212] border-[#FACC15]/20 hover:border-[#FACC15]/50'
                 }
               `}
               variants={itemVariants}
               whileHover={{ 
-                scale: 1.02,
-                transition: { type: "spring" as const, stiffness: 100, damping: 20 }
+                y: -4,
+                scale: 1.02 
               }}
             >
-              {/* 6C Framework: Clear Icon */}
-              <div className={`
-                w-12 h-12 rounded-xl flex items-center justify-center mb-4
-                ${chapter.featured ? 'bg-white/20' : 'bg-brand-yellow/10'}
-              `}>
-                <chapter.icon className={`w-6 h-6 ${chapter.featured ? 'text-white' : 'text-brand-yellow'}`} />
+              <div className="relative z-10 flex flex-col h-full">
+                {/* Chapter Badge */}
+                <div className="mb-3">
+                  <span className={`text-xs font-bold px-2 py-1 rounded-full ${
+                    pillar.featured ? 'bg-white/20 text-white' : 'bg-[#FACC15]/20 text-[#FACC15]'
+                  }`}>
+                    {pillar.chapter}
+                  </span>
+                </div>
+
+                {/* Icon */}
+                <div className={`
+                  w-12 h-12 rounded-xl flex items-center justify-center mb-4
+                  ${pillar.featured 
+                    ? 'bg-white/20' 
+                    : 'bg-[#FACC15]/10'
+                  }
+                `}>
+                  <pillar.icon className={`w-6 h-6 ${pillar.featured ? 'text-white' : 'text-[#FACC15]'}`} />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 flex flex-col">
+                  <h3 className={`font-display font-bold text-lg mb-2 ${pillar.featured ? 'text-white' : 'text-white'}`}>
+                    {pillar.headline}
+                  </h3>
+                  <p className={`text-sm leading-relaxed mb-3 ${pillar.featured ? 'text-white/90' : 'text-[#E5E7EB]'}`}>
+                    {pillar.description}
+                  </p>
+                  
+                  {/* Title */}
+                  <div className="mt-auto">
+                    <p className={`text-xs font-medium ${pillar.featured ? 'text-white/70' : 'text-[#FACC15]'}`}>
+                      {pillar.title}
+                    </p>
+                  </div>
+                </div>
               </div>
-              
-              {/* 6C Framework: Bold Title */}
-              <h3 className={`
-                font-display font-bold mb-3
-                ${chapter.featured ? 'text-2xl' : 'text-lg text-white'}
-              `}>
-                {chapter.title}
-              </h3>
-              
-              {/* 6C Framework: 2 Lines High-Impact Description */}
-              <p className={`
-                leading-relaxed text-sm
-                ${chapter.featured ? 'text-white/90' : 'text-soft-gray'}
-              `}>
-                {chapter.desc}
-              </p>
+
+              {/* Hover Effect */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom CTA */}
         <motion.div 
@@ -163,9 +191,9 @@ const BookBreakdown = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="inline-flex items-center gap-2 bg-brand-yellow/10 text-brand-yellow px-6 py-3 rounded-full font-display font-semibold">
-            <Target className="w-4 h-4" />
-            <span>8 Action-Packed Chapters + 2 Bonus Sections</span>
+          <div className="inline-flex items-center gap-2 bg-[#FACC15]/10 text-[#FACC15] px-6 py-3 rounded-full font-display font-semibold">
+            <BookOpen className="w-4 h-4" />
+            <span>6 Strategic Pillars for Communication Mastery</span>
           </div>
         </motion.div>
       </div>

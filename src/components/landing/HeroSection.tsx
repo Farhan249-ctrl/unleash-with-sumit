@@ -65,7 +65,7 @@ const HeroSection = () => {
       }}
     >
       {/* Dark radial gradient overlay for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A]/90 via-[#0A0A0A]/70 to-[#0A0A0A]/90" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div 
@@ -82,18 +82,18 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="font-display text-fluid-4xl lg:text-fluid-5xl font-bold mb-6 text-white leading-tight">
-              Stop Being <span className="text-gradient-brand">Smartest Person in Room</span><br />
+              Stop Being the <span className="text-[#FACC15]">Smartest Person in the Room</span><br />
               Who Stays Silent.
             </h1>
-            <p className="text-[#EDEDED] text-fluid-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8">
-              You know the answers. You have the preparation. But when the moment comes, words dissolve. 
-              It's time to build the <span className="text-brand-yellow font-bold">architecture of your voice</span>.
+            <p className="text-[#FFFFFF] text-fluid-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8">
+              You know the answers. You have the preparation. But when the moment comes, the words dissolve. 
+              It's time to build the <span className="text-[#FACC15] font-bold">architecture of your voice</span>.
             </p>
             
-            {/* Social Proof */}
+            {/* Trust Signal */}
             <div className="flex items-center gap-4 mb-8">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-brand-yellow rounded-full animate-pulse" />
+                <Star className="w-5 h-5 text-[#FACC15] fill-[#FACC15]" />
                 <span className="text-white font-medium">200+ Founding Readers</span>
               </div>
               <div className="text-white/60 text-sm">•</div>
@@ -106,7 +106,7 @@ const HeroSection = () => {
                 href={FLIPKART_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-2 bg-brand-gradient text-brand-black font-display font-bold text-lg px-8 py-4 rounded-lg overflow-hidden"
+                className="group relative inline-flex items-center justify-center gap-2 bg-[#FACC15] text-[#0A0A0A] font-display font-bold text-lg px-8 py-4 rounded-lg overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
@@ -120,12 +120,12 @@ const HeroSection = () => {
                 href={AMAZON_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-2 border-2 border-brand-yellow text-brand-yellow font-display font-bold text-lg px-8 py-4 rounded-lg overflow-hidden"
+                className="group relative inline-flex items-center justify-center gap-2 border-2 border-[#FACC15] text-[#FACC15] font-display font-bold text-lg px-8 py-4 rounded-lg overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
               >
-                <div className="absolute inset-0 bg-brand-yellow opacity-0 group-hover:opacity-20 transition-opacity" />
+                <div className="absolute inset-0 bg-[#FACC15] opacity-0 group-hover:opacity-20 transition-opacity" />
                 <ExternalLink className="w-5 h-5 relative z-10" />
                 <span className="relative z-10">Buy on Amazon</span>
               </motion.a>

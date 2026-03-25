@@ -33,31 +33,31 @@ const BonusSection = () => {
   const totalValue = 499 + 299 + 199 + 499;
 
   return (
-    <section className="section-yellow py-16 px-4">
+    <section className="py-16 px-4 bg-[#0A0A0A]">
       <div className="container mx-auto max-w-4xl">
         <div className="flex items-center justify-center gap-3 mb-3">
-          <Gift className="w-8 h-8" />
-          <h2 className="font-display text-3xl md:text-4xl font-bold">
+          <Gift className="w-8 h-8 text-[#FACC15]" />
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white">
             FREE Bonuses Worth ₹{totalValue}+
           </h2>
         </div>
-        <p className="text-center font-semibold mb-8 opacity-80">
+        <p className="text-center font-semibold mb-8 text-[#E5E7EB] opacity-80">
           Only for online buyers — limited time offer
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {bonuses.map(({ icon: Icon, title, value, desc }) => (
             <div
               key={title}
-              className="bg-secondary text-secondary-foreground rounded-xl p-5 border-2 border-brand-yellow/20"
+              className="bg-[#121212] text-white rounded-xl p-5 border-2 border-[#FACC15]/20"
             >
               <div className="flex items-center gap-3 mb-2">
-                <Icon className="w-6 h-6 text-brand-yellow" />
-                <h3 className="font-display font-bold">{title}</h3>
+                <Icon className="w-6 h-6 text-[#FACC15]" />
+                <h3 className="font-display font-bold text-white">{title}</h3>
               </div>
-              <p className="text-secondary-foreground/70 text-sm mb-2">{desc}</p>
-              <p className="text-brand-yellow font-bold text-sm">
-                Value: {value} — <span className="text-secondary-foreground/50 line-through">Paid</span>{" "}
-                <span className="text-brand-yellow">FREE</span>
+              <p className="text-[#E5E7EB]/70 text-sm mb-2">{desc}</p>
+              <p className="text-[#FACC15] font-bold text-sm">
+                Value: {value} — <span className="text-[#E5E7EB]/50 line-through">Paid</span>{" "}
+                <span className="text-[#FACC15]">FREE</span>
               </p>
             </div>
           ))}
@@ -67,7 +67,7 @@ const BonusSection = () => {
             href={FLIPKART_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground font-display font-bold text-lg px-8 py-4 rounded-lg transition-transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-[#FACC15] text-black font-display font-bold text-lg px-8 py-4 rounded-lg transition-transform hover:scale-105"
           >
             <ShoppingCart className="w-5 h-5" />
             Get Book + All Bonuses — ₹349

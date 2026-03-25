@@ -5,18 +5,18 @@ const AMAZON_LINK = "https://amzn.in/d/0izWwgtM";
 
 const StrongCTA = () => {
   return (
-    <section className="section-dark py-16 px-4">
+    <section className="bg-[#0A0A0A] py-16 px-4 border-t border-b border-[#FACC15]/30">
       <div className="container mx-auto max-w-2xl text-center">
         <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-          Stop Waiting.
+          <span className="text-[#FFFFFF]">Stop Waiting.</span>
           <br />
-          <span className="text-gradient-brand">Start Speaking.</span>
+          <span className="text-[#FACC15]">Start Speaking.</span>
         </h2>
-        <p className="text-secondary-foreground/70 text-lg mb-6">
+        <p className="text-[#E5E7EB]/60 text-lg mb-6">
           Every day you delay is another interview lost, another presentation fumbled, 
           another opportunity wasted. The bonuses won't last forever.
         </p>
-        <div className="flex items-center justify-center gap-2 text-brand-yellow mb-6 text-sm font-semibold">
+        <div className="flex items-center justify-center gap-2 text-[#FACC15] mb-6 text-sm font-semibold">
           <Clock className="w-4 h-4" />
           Bonuses ending soon — only for early buyers
         </div>
@@ -25,7 +25,7 @@ const StrongCTA = () => {
             href={FLIPKART_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-brand-gradient text-brand-black font-display font-bold text-lg px-8 py-4 rounded-lg animate-pulse-glow transition-transform hover:scale-105"
+            className="inline-flex items-center justify-center gap-2 bg-[#FACC15] text-[#0A0A0A] font-display font-bold text-lg px-8 py-4 rounded-lg transition-transform hover:scale-105 shadow-[0_0_30px_rgba(250,204,21,0.4)]"
           >
             <ShoppingCart className="w-5 h-5" />
             Buy Now — ₹349
@@ -34,12 +34,12 @@ const StrongCTA = () => {
             href={AMAZON_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 border-2 border-brand-yellow text-brand-yellow font-display font-semibold text-lg px-8 py-4 rounded-lg transition-all hover:bg-brand-yellow hover:text-brand-black"
+            className="inline-flex items-center justify-center gap-2 border-2 border-[#FACC15] text-[#FACC15] font-display font-semibold text-lg px-8 py-4 rounded-lg transition-all hover:bg-[#FACC15] hover:text-[#0A0A0A] bg-transparent"
           >
             Buy on Amazon
           </a>
         </div>
-        <p className="text-secondary-foreground/40 text-sm mt-6">
+        <p className="text-[#E5E7EB]/60 text-sm mt-6">
           <span className="line-through">₹299 offline</span> → ₹349 online with ₹1,496 in bonuses FREE
         </p>
       </div>

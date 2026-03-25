@@ -1,66 +1,68 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, ExternalLink, Clock, AlertCircle } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import Countdown from 'react-countdown';
+import { ShoppingCart, Clock, AlertCircle } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
 
 const FLIPKART_LINK = "https://dl.flipkart.com/s/y8iqsbNNNN";
 const AMAZON_LINK = "https://amzn.in/d/0izWwgtM";
 
-// Target date: 2 weeks from now for "Placement Season Launch"
-const TARGET_DATE = new Date();
-TARGET_DATE.setDate(TARGET_DATE.getDate() + 14);
+// 30 minutes in milliseconds
+const THIRTY_MINUTES = 30 * 60 * 1000;
 
-const CountdownRenderer = ({ days, hours, minutes, seconds, completed }: any) => {
-  if (completed) {
-    return (
-      <div className="flex items-center gap-2 text-red-500">
-        <AlertCircle className="w-4 h-4" />
-        <span className="font-bold">Launch Extended - Limited Time!</span>
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex items-center gap-2">
-      <div className="flex items-center gap-1">
-        <div className="bg-brand-black/20 px-2 py-1 rounded font-mono font-bold text-sm">
-          {String(days).padStart(2, '0')}
-        </div>
-        <span className="text-xs">D</span>
-      </div>
-      <div className="flex items-center gap-1">
-        <div className="bg-brand-black/20 px-2 py-1 rounded font-mono font-bold text-sm">
-          {String(hours).padStart(2, '0')}
-        </div>
-        <span className="text-xs">H</span>
-      </div>
-      <div className="flex items-center gap-1">
-        <div className="bg-brand-black/20 px-2 py-1 rounded font-mono font-bold text-sm">
-          {String(minutes).padStart(2, '0')}
-        </div>
-        <span className="text-xs">M</span>
-      </div>
-      <div className="flex items-center gap-1">
-        <div className="bg-brand-black/20 px-2 py-1 rounded font-mono font-bold text-sm">
-          {String(seconds).padStart(2, '0')}
-        </div>
-        <span className="text-xs">S</span>
-      </div>
-    </div>
-  );
-};
+interface TimeLeft {
+  minutes: number;
+  seconds: number;
+}
 
 const StickyBuyHeader = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isCountdownActive, setIsCountdownActive] = useState(true);
   const [isClient, setIsClient] = useState(false);
+  
+  // 30-minute countdown state
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({ minutes: 30, seconds: 0 });
+  const [targetTime, setTargetTime] = useState<number>(0);
 
+  // Initialize client-side rendering
   useEffect(() => {
     setIsClient(true);
+    // Set initial target time (30 minutes from now)
+    setTargetTime(Date.now() + THIRTY_MINUTES);
   }, []);
 
+  // Countdown timer logic with auto-reset
+  useEffect(() => {
+    if (!isClient || targetTime === 0) return;
+
+    const calculateTimeLeft = () => {
+      const now = Date.now();
+      const difference = targetTime - now;
+
+      if (difference <= 0) {
+        // Reset timer to 30 minutes when it hits zero
+        const newTargetTime = Date.now() + THIRTY_MINUTES;
+        setTargetTime(newTargetTime);
+        return { minutes: 30, seconds: 0 };
+      }
+
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      return { minutes, seconds };
+    };
+
+    // Initial calculation
+    setTimeLeft(calculateTimeLeft());
+
+    // Update every second
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isClient, targetTime]);
+
+  // Scroll behavior
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -77,32 +79,50 @@ const StickyBuyHeader = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  const formatTime = (value: number) => String(value).padStart(2, '0');
+
   return (
     <>
-      {/* Thin Blurred Glass Bar - Sticky Urgency */}
+      {/* Thin Blurred Glass Bar - Sticky Urgency with 30-min Timer */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-rich-black/80 backdrop-blur-xl border-b border-brand-yellow/20"
+        className="fixed top-0 left-0 right-0 z-[100] bg-gradient-to-r from-[#0A0A0A] via-[#1A1A1A] to-[#0A0A0A] backdrop-blur-xl border-b-2 border-[#FACC15] shadow-[0_4px_20px_rgba(250,204,21,0.3)]"
       >
         <div className="container mx-auto flex items-center justify-between py-3 px-4">
           <div className="flex items-center gap-3">
-            <Clock className="w-4 h-4 text-brand-yellow" />
-            <span className="font-display font-bold text-sm text-white">Placement Season Launch</span>
+            <Clock className="w-4 h-4 text-[#FACC15]" />
+            <motion.span 
+              className="font-display font-bold text-sm text-white"
+              animate={{ opacity: [1, 0.7, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              Exclusive Launch Offer: First 50 Buyers Only — Limited Bonuses Inside
+            </motion.span>
           </div>
           
-          {isClient && isCountdownActive && (
-            <Countdown
-              date={TARGET_DATE}
-              renderer={CountdownRenderer}
-              onComplete={() => setIsCountdownActive(false)}
-            />
+          {isClient && (
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                <div className="bg-[#FACC15] px-3 py-1.5 rounded font-mono font-bold text-sm text-black">
+                  {formatTime(timeLeft.minutes)}
+                </div>
+                <span className="text-xs text-white/60">:</span>
+                <div className="bg-[#FACC15] px-3 py-1.5 rounded font-mono font-bold text-sm text-black">
+                  {formatTime(timeLeft.seconds)}
+                </div>
+              </div>
+              <span className="text-xs text-white/60 ml-1">left</span>
+            </div>
           )}
           
           <div className="flex items-center gap-2 text-sm font-medium">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-soft-gray">Limited Bonuses Available</span>
+            <div className="relative">
+              <div className="w-2 h-2 bg-[#EF4444] rounded-full"></div>
+              <div className="absolute inset-0 w-2 h-2 bg-[#EF4444] rounded-full animate-ping"></div>
+            </div>
+            <span className="text-white/80">Limited Bonuses Available</span>
           </div>
         </div>
       </motion.div>
@@ -115,13 +135,20 @@ const StickyBuyHeader = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
-            className="fixed bottom-0 left-0 right-0 z-40 bg-rich-black/90 backdrop-blur-xl border-t border-brand-yellow/20"
+            className="fixed bottom-0 left-0 right-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-xl border-t border-[#FACC15]/30"
           >
             <div className="container mx-auto px-4 py-4">
               <div className="flex items-center justify-center gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-yellow rounded-full animate-pulse" />
-                  <span className="text-white text-sm font-medium">Placement Season Special: ₹349 + Exclusive Bonuses</span>
+                  <div className="w-2 h-2 bg-[#FACC15] rounded-full animate-pulse" />
+                  <span className="text-white text-sm font-medium">
+                    Exclusive Launch: ₹349 + Bonuses Worth ₹1496
+                  </span>
+                  {isClient && (
+                    <span className="text-[#FACC15] font-mono text-sm">
+                      {formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
+                    </span>
+                  )}
                 </div>
                 
                 {/* Single Buy Now Button */}
@@ -129,7 +156,7 @@ const StickyBuyHeader = () => {
                   href={FLIPKART_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-brand-gradient text-brand-black font-display font-bold text-sm px-6 py-3 rounded-lg transition-all"
+                  className="inline-flex items-center gap-2 bg-[#FACC15] text-[#0A0A0A] font-display font-bold text-sm px-6 py-3 rounded-lg transition-all"
                   whileHover={{ 
                     scale: 1.05,
                     transition: { type: "spring" as const, stiffness: 100, damping: 20 }
