@@ -1,3 +1,9 @@
-// Re-export the base fixture from the package
-// Override or extend test/expect here if needed
-export { test, expect } from "lovable-agent-playwright-config/fixture";
+import { test as base } from '@playwright/test';
+
+// Define custom fixtures for UnleashWithSumit Book testing
+export const test = base.extend({
+  // Add custom test fixtures here if needed
+  // Example: page, context, etc.
+});
+
+export const expect = test.expect;
