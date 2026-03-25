@@ -3,6 +3,20 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { MessageCircle, Star, Award, CheckCircle, Quote, Users } from 'lucide-react';
 
+// Zero-Failure Local Faculty Asset Imports
+import fac1 from '@/assets/faculty/fac-1-aravind.jpeg';
+import fac2 from '@/assets/faculty/fac-2-placement.jpeg';
+import fac3 from '@/assets/faculty/fac-3-suthendran.jpeg';
+import fac4 from '@/assets/faculty/fac-4-brintha.jpeg';
+import fac5 from '@/assets/faculty/fac-5-shubathra.jpeg';
+import fac6 from '@/assets/faculty/fac-6-librarian.jpeg';
+
+// Hard-Link WhatsApp Testimonial Asset Imports
+import wa1 from '@/assets/testimonials/wa-1.jpeg';
+import wa2 from '@/assets/testimonials/wa-2.jpeg';
+import wa3 from '@/assets/testimonials/wa-3.jpeg';
+import wa4 from '@/assets/testimonials/wa-4.jpeg';
+
 // WhatsApp Link
 const WHATSAPP_LINK = "https://wa.me/917070669435?text=I%20just%20bought%20the%20book!";
 
@@ -10,238 +24,239 @@ const WHATSAPP_LINK = "https://wa.me/917070669435?text=I%20just%20bought%20the%2
 const facultyEndorsements = [
   {
     id: "faculty-1",
-    name: "Dr. Sarah Johnson",
-    title: "Head of English Department",
-    institution: "Indian Institute of Technology",
-    endorsement: "This book bridges the critical gap between technical knowledge and effective communication. A must-read for every engineering student.",
+    name: "Aravind Sir",
+    title: "HOD English Department, KLU",
+    institution: "KLU",
+    endorsement: "I'm happy to see your growth and how inputs have built confidence within you. Definitely your book will be a testimony of learned experiences and an eyeopener for many. All the very best.",
     verified: true,
-    headshot: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=400&fit=crop&crop=faces"
+    headshot: fac1
   },
   {
     id: "faculty-2", 
-    name: "Prof. Michael Chen",
-    title: "Dean of Student Affairs",
-    institution: "National Institute of Technology",
-    endorsement: "Sumit's methodologies have transformed our students' placement success rates. Highly recommended.",
+    name: "Director of Corp. Relations",
+    title: "Placement Head",
+    institution: "KLU",
+    endorsement: "Communication is the biggest problem in placements; students are not aware. I think this book can really help those students. I will read it and share my feedback.",
     verified: true,
-    headshot: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=400&fit=crop&crop=faces"
+    headshot: fac2
   },
   {
     id: "faculty-3",
-    name: "Dr. Rajesh Kumar",
-    title: "Library Committee Head",
-    institution: "University of Delhi",
-    endorsement: "We've procured this book for our central library due to overwhelming student demand and proven results.",
+    name: "Suthendran Sir",
+    title: "Dir. Int. Relations",
+    institution: "KLU",
+    endorsement: "The book contents are good and readable. Review given before book launch.",
     verified: true,
-    headshot: "https://images.unsplash.com/photo-1567416492696-2e4b89bbd77d?w=300&h=400&fit=crop&crop=faces"
+    headshot: fac3
   },
   {
     id: "faculty-4",
-    name: "Prof. Anita Sharma",
-    title: "Director of Training",
-    institution: "Engineering College Mumbai",
-    endorsement: "The communication frameworks in this book are revolutionary. Our students report immediate improvement.",
+    name: "Dr. Brintha Mam",
+    title: "HOD IT",
+    institution: "KLU",
+    endorsement: "This is a real problem and this book looks unique.",
     verified: true,
-    headshot: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&h=400&fit=crop&crop=faces"
+    headshot: fac4
   },
   {
     id: "faculty-5",
-    name: "Dr. Vikram Singh",
-    title: "Placement Coordinator",
-    institution: "Technical University",
-    endorsement: "Students who read this book show 85% better interview performance. It's become required reading.",
+    name: "Shubathra Mam",
+    title: "Head ACIC",
+    institution: "KLU",
+    endorsement: "This book will really help my son to improve his Communication and it's unique.",
     verified: true,
-    headshot: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=400&fit=crop&crop=faces"
+    headshot: fac5
   },
   {
     id: "faculty-6",
-    name: "Prof. Meera Patel",
-    title: "Communication Skills Head",
-    institution: "Business School",
-    endorsement: "Finally, a practical guide that works for Indian students. The results speak for themselves.",
+    name: "Gnanasekaran Sir",
+    title: "Librarian",
+    institution: "KLU",
+    endorsement: "Never seen this kind of book in my past 15-20 years in library. Very unique and action oriented. The best thing is it not only talks about English; it gives structure and frameworks.",
     verified: true,
-    headshot: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&h=400&fit=crop&crop=faces"
+    headshot: fac6
   }
 ];
 
 // Tier 2: Reader Success - Testimonials and WhatsApp Screenshots
 const consolidatedTestimonials = [
   {
+    id: "whatsapp-1",
+    name: "Founding Reader",
+    role: "Success Story",
+    message: "I got the missing skill nobody teaches—the structure to communicate clearly. The recording rituals forced me to implement what I learned.",
+    timestamp: "2 days ago",
+    rating: 5,
+    type: "whatsapp",
+    screenshot: wa1
+  },
+  {
+    id: "whatsapp-2",
+    name: "Founding Reader",
+    role: "Success Story",
+    message: "For the first time, I felt confident and could control the pause. This book gave me the architecture of my voice.",
+    timestamp: "5 days ago",
+    rating: 5,
+    type: "whatsapp",
+    screenshot: wa2
+  },
+  {
+    id: "whatsapp-3",
+    name: "Founding Reader",
+    role: "Success Story",
+    message: "I was able to talk what I was thinking in my brain. It became easy to express my thoughts and the daily tasks were very useful.",
+    timestamp: "1 week ago",
+    rating: 5,
+    type: "whatsapp",
+    screenshot: wa3
+  },
+  {
+    id: "whatsapp-4",
+    name: "Founding Reader",
+    role: "Success Story",
+    message: "My fear in speaking to people is gone. The 30-Second Reset practice literal made me feel comfortable.",
+    timestamp: "3 days ago",
+    rating: 5,
+    type: "whatsapp",
+    screenshot: wa4
+  },
+  {
     id: "testimonial-1",
-    name: "Priya S.",
-    role: "Engineering Student",
-    text: "This book completely changed how I approach interviews. I used to freeze up, now I speak with confidence.",
-    avatar: "PS",
+    name: "Farhan",
+    role: "Founding Reader",
+    text: "I got practices individually. The difference this cohort created is speaking in front of multiple People. Sumit forced implementation which literally most of us wouldn't have tried in our life times.",
+    avatar: "FH",
     rating: 5,
     featured: true
   },
   {
     id: "testimonial-2",
-    name: "Rohan K.",
-    role: "MBA Student",
-    text: "The frameworks are so practical. I applied them immediately in my presentations and got amazing feedback.",
-    avatar: "RK",
+    name: "P. Masthan Reddy",
+    role: "3rd year student, Kalasalingam University",
+    text: "I have many things in my brain but I'm not able to express them outside. Daily tasks were very useful and after sufficient practice now I am able to talk what I am thinking. I attended some Hackathons... it became easy to express my thoughts.",
+    avatar: "PM",
     rating: 5,
     featured: false
-  },
-  {
-    id: "testimonial-3",
-    name: "Ananya M.",
-    role: "Software Developer",
-    text: "From being the silent person in meetings to leading discussions. This book is a game-changer!",
-    avatar: "AM",
-    rating: 5,
-    featured: true
-  },
-  {
-    id: "whatsapp-1",
-    name: "Karan Verma",
-    role: "Recent Graduate",
-    message: "Got placed in TCS! Your interview tips were the reason. Thank you so much Sumit!",
-    timestamp: "2 days ago",
-    rating: 5,
-    type: "whatsapp"
-  },
-  {
-    id: "testimonial-4",
-    name: "Neha Patel",
-    role: "Management Trainee",
-    text: "The STAR framework alone is worth the price. I can now structure any answer perfectly.",
-    avatar: "NP",
-    rating: 5,
-    featured: false
-  },
-  {
-    id: "whatsapp-2",
-    name: "Amit Sharma",
-    role: "Final Year Student",
-    message: "Just gave my viva. Used your techniques and the professors were impressed! ",
-    timestamp: "5 days ago",
-    rating: 5,
-    type: "whatsapp"
   }
 ];
 
 const AcademicCard = ({ data }: { data: typeof facultyEndorsements[0] }) => {
   return (
     <motion.div
-      className="bg-[#121212] rounded-2xl p-6 border border-[#FACC15]/10 relative overflow-hidden group h-full flex flex-col"
+      className="bg-[#121212]/60 backdrop-blur-xl border border-[#FACC15]/10 rounded-2xl relative overflow-hidden group hover:shadow-[0_0_30px_rgba(250,204,21,0.15)] transition-all duration-700"
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.02 }}
     >
-      {/* Verified Badge */}
-      {data.verified && (
-        <div className="absolute top-4 right-4 z-20">
-          <div className="bg-[#FACC15] rounded-full p-1.5">
-            <CheckCircle className="w-3 h-3 text-[#0A0A0A]" />
-          </div>
-        </div>
-      )}
-
-      {/* Profile Image Container with Grayscale-to-Color Transition */}
-      <div className="relative mb-4 mx-auto w-full h-32">
-        <div className="aspect-[3/4] rounded-xl overflow-hidden border-2 border-[#FACC15]/20 group-hover:border-[#FACC15]/50 transition-all duration-300">
-          <img
-            src={data.headshot}
-            alt={`Sumit with ${data.name}`}
-            className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"
-          />
-        </div>
-        {/* Institutional Badge */}
-        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-[#0A0A0A] border border-[#FACC15]/30 px-2 py-1 rounded-full">
+      {/* KLU Badge - Elegant Floating Tag */}
+      <div className="absolute top-4 right-4 z-20">
+        <div className="bg-[#FACC15]/20 backdrop-blur-sm border border-[#FACC15]/30 px-3 py-1 rounded-full">
           <span className="text-[#FACC15] text-xs font-bold">
-            {data.institution.split(' ')[0]}
+            {data.institution}
           </span>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 flex flex-col">
-        <h3 className="font-display font-bold text-lg text-white mb-1 text-center">
-          {data.name}
-        </h3>
-        <p className="text-[#E5E7EB] text-sm font-medium mb-1 text-center">
-          {data.title}
-        </p>
-        <p className="text-[#E5E7EB]/70 text-xs text-center mb-3">
-          {data.institution}
-        </p>
-        
-        <div className="relative flex-1">
-          <Quote className="absolute -top-2 -left-2 w-3 h-3 text-[#FACC15]/20" />
-          <p className="text-[#E5E7EB] leading-relaxed text-xs italic pl-4 text-center">
-            "{data.endorsement}"
-          </p>
+      {/* 2-Column Grid Layout */}
+      <div className="p-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Left Column: Image */}
+          <div className="relative">
+            <div className="aspect-[3/4] rounded-xl overflow-hidden">
+              <img
+                src={data.headshot}
+                alt={`Sumit with ${data.name}`}
+                className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+            {/* Verified Badge Overlay on Photo */}
+            {data.verified && (
+              <div className="absolute bottom-4 left-4">
+                <div className="bg-[#FACC15] rounded-full p-2 shadow-lg">
+                  <CheckCircle className="w-4 h-4 text-[#0A0A0A]" />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Right Column: Text */}
+          <div className="flex flex-col justify-center">
+            {/* Name and Title */}
+            <h3 className="font-display font-bold text-xl md:text-2xl text-[#FACC15] mb-2">
+              {data.name}
+            </h3>
+            <p className="text-[#FFFFFF] text-sm md:text-base font-medium mb-4">
+              {data.title}
+            </p>
+            
+            {/* Quote */}
+            <div className="relative">
+              <Quote className="absolute -top-2 -left-2 w-4 h-4 text-[#FACC15]/20" />
+              <p className="text-[#E5E7EB] text-sm md:text-base leading-relaxed italic font-light pl-4">
+                "{data.endorsement}"
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Hover Effect */}
-      <div className="absolute inset-0 bg-[#FACC15]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
     </motion.div>
   );
 };
 
 const ReaderCard = ({ data }: { data: typeof consolidatedTestimonials[0] }) => {
   if (data.type === 'whatsapp') {
-    // WhatsApp Screenshot Card - Full Card as Mobile Phone Screen
+    // WhatsApp Screenshot Card - Smartphone Frame with 30/70 split
     return (
       <motion.div
-        className="bg-[#121212] rounded-2xl p-4 border border-[#FACC15]/10 h-full flex flex-col"
+        className="bg-[#121212]/40 backdrop-blur-xl border border-[#FACC15]/10 rounded-2xl p-4 aspect-square h-full flex flex-col"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
         whileHover={{ scale: 1.02 }}
       >
-        {/* Mobile Phone Frame */}
-        <div className="flex-1 bg-black rounded-2xl p-2 border-2 border-[#FACC15]/20 relative overflow-hidden">
-          {/* Phone Status Bar */}
-          <div className="bg-[#0A0A0A] rounded-t-xl px-3 py-1 flex items-center justify-between mb-2">
+        {/* Top 30%: Text Hook */}
+        <div className="mb-4">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+              <MessageCircle className="w-3 h-3 text-white" />
+            </div>
             <span className="text-[#FACC15] text-xs font-bold">WhatsApp</span>
-            <div className="flex items-center gap-1">
-              <div className="w-1 h-1 bg-white rounded-full"></div>
-              <div className="w-1 h-1 bg-white rounded-full"></div>
-              <div className="w-1 h-1 bg-white rounded-full"></div>
-            </div>
+            <span className="text-[#E5E7EB]/50 text-xs ml-auto">{data.timestamp}</span>
           </div>
+          <h3 className="font-display font-bold text-sm text-white mb-1">{data.name}</h3>
+          <p className="text-[#E5E7EB] text-xs leading-relaxed">{data.message}</p>
+        </div>
+
+        {/* Bottom 70%: Screenshot Image */}
+        <div className="flex-1 bg-black rounded-xl p-2 border border-[#FACC15]/20 relative overflow-hidden">
+          <img
+            src={data.screenshot}
+            alt="WhatsApp Screenshot"
+            className="w-full h-full object-cover rounded-lg"
+          />
+          {/* Phone Frame Overlay */}
+          <div className="absolute inset-0 border-2 border-[#FACC15]/30 rounded-lg pointer-events-none" />
           
-          {/* WhatsApp Header */}
-          <div className="flex items-center gap-2 mb-3 px-1">
-            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-              <MessageCircle className="w-4 h-4 text-white" />
+          {/* Rating Badge */}
+          <div className="absolute bottom-2 right-2 bg-[#FACC15] text-[#0A0A0A] px-2 py-1 rounded-full text-xs font-bold">
+            <div className="flex items-center gap-1">
+              <Star className="w-3 h-3 fill-current" />
+              <span>{data.rating}.0</span>
             </div>
-            <div className="flex-1">
-              <div className="font-semibold text-white text-xs">{data.name}</div>
-              <div className="text-xs text-[#E5E7EB]/70">{data.role}</div>
-            </div>
-            <div className="text-xs text-[#E5E7EB]/50">{data.timestamp}</div>
-          </div>
-
-          {/* Message Content */}
-          <div className="bg-[#0A0A0A] rounded-lg p-2 mb-2">
-            <p className="text-xs text-[#E5E7EB] leading-relaxed">{data.message}</p>
-          </div>
-
-          {/* Rating */}
-          <div className="flex items-center gap-1 px-1">
-            {[...Array(data.rating)].map((_, i) => (
-              <Star key={i} className="w-2 h-2 fill-[#FACC15] text-[#FACC15]" />
-            ))}
-            <span className="text-xs text-[#E5E7EB] ml-1">Success Story</span>
           </div>
         </div>
       </motion.div>
     );
   } else {
-    // Testimonial Card - Split Layout (Text Top + Screenshot Bottom)
+    // Deep Transformation Text Card
     return (
       <motion.div
         className={`
           relative overflow-hidden rounded-2xl p-6 border transition-all duration-300 h-full flex flex-col
           ${data.featured 
-            ? 'bg-gradient-to-br from-[#FACC15] to-[#FACC15]/80 text-[#0A0A0A] border-[#FACC15]' 
-            : 'bg-[#121212] border-[#FACC15]/10'
+            ? 'bg-[#FACC15] text-[#0A0A0A] border-[#FACC15]' 
+            : 'bg-[#121212]/40 backdrop-blur-xl border-[#FACC15]/10'
           }
         `}
         initial={{ opacity: 0, scale: 0.95 }}
@@ -249,16 +264,22 @@ const ReaderCard = ({ data }: { data: typeof consolidatedTestimonials[0] }) => {
         transition={{ duration: 0.5 }}
         whileHover={{ scale: 1.02 }}
       >
-        {/* Top Half: Testimonial Text */}
+        {/* Avatar and Name */}
         <div className="flex items-start gap-4 mb-4">
-          <div className="w-10 h-10 rounded-full bg-[#0A0A0A] flex items-center justify-center text-white font-bold flex-shrink-0 text-sm">
+          <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-lg ${
+            data.featured ? 'bg-[#0A0A0A] text-[#FACC15]' : 'bg-[#FACC15] text-[#0A0A0A]'
+          }`}>
             {data.avatar}
           </div>
           <div className="flex-1">
-            <h3 className={`font-display font-bold text-sm mb-1 ${data.featured ? 'text-[#0A0A0A]' : 'text-white'}`}>
+            <h3 className={`font-display font-bold text-sm mb-1 ${
+              data.featured ? 'text-[#0A0A0A]' : 'text-white'
+            }`}>
               {data.name}
             </h3>
-            <p className={`text-xs font-medium mb-2 ${data.featured ? 'text-[#0A0A0A]/80' : 'text-[#E5E7EB]'}`}>
+            <p className={`text-xs font-medium mb-2 ${
+              data.featured ? 'text-[#0A0A0A]/80' : 'text-[#E5E7EB]'
+            }`}>
               {data.role}
             </p>
             <div className="flex items-center gap-1">
@@ -269,40 +290,21 @@ const ReaderCard = ({ data }: { data: typeof consolidatedTestimonials[0] }) => {
           </div>
         </div>
         
-        <div className="mb-4">
-          <p className={`leading-relaxed text-xs italic ${data.featured ? 'text-[#0A0A0A]/90' : 'text-[#E5E7EB]'}`}>
-            "{data.text}"
-          </p>
-        </div>
-
-        {/* Bottom Half: WhatsApp Screenshot Preview */}
-        <div className="flex-1 bg-black rounded-xl p-2 border border-[#FACC15]/20 relative overflow-hidden">
-          {/* Mini WhatsApp Interface */}
-          <div className="bg-[#0A0A0A] rounded-lg px-2 py-1 flex items-center gap-1 mb-1">
-            <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
-              <MessageCircle className="w-2 h-2 text-white" />
-            </div>
-            <span className="text-[#FACC15] text-xs font-bold">WhatsApp</span>
-          </div>
-          
-          <div className="bg-[#121212] rounded p-1">
-            <div className="flex items-center gap-1 mb-1">
-              <div className="w-2 h-2 bg-white rounded-full"></div>
-              <div className="text-xs text-white font-medium">{data.name}</div>
-            </div>
-            <p className="text-xs text-[#E5E7EB] leading-tight">
-              "Thank you Sumit! Your book changed everything! 🙏"
+        {/* Quote */}
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="relative mb-4">
+            <Quote className={`absolute -top-2 -left-2 w-4 h-4 ${
+              data.featured ? 'text-[#0A0A0A]/20' : 'text-[#FACC15]/20'
+            }`} />
+            <p className={`leading-relaxed text-sm italic pl-4 ${
+              data.featured ? 'text-[#0A0A0A]/90' : 'text-[#E5E7EB]'
+            }`}>
+              "{data.text}"
             </p>
           </div>
-          
-          {/* "Real Message" Badge */}
-          <div className="absolute top-1 right-1">
-            <div className="bg-[#FACC15] text-[#0A0A0A] px-1 py-0.5 rounded text-xs font-bold">
-              REAL
-            </div>
-          </div>
         </div>
 
+        {/* Featured Badge */}
         {data.featured && (
           <div className="absolute top-4 right-4">
             <div className="w-2 h-2 bg-[#0A0A0A]/20 rounded-full animate-pulse" />
@@ -380,8 +382,8 @@ const SocialProofSection = () => {
             </div>
           </motion.div>
 
-          {/* 3 Columns (Mobile) / 6 Columns (Desktop) Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {/* 1 Column (Mobile) / 2 Columns (Desktop) Grid for Wide Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {facultyEndorsements.map((endorsement) => (
               <motion.div
                 key={endorsement.id}
@@ -412,16 +414,37 @@ const SocialProofSection = () => {
             </div>
           </motion.div>
 
-          {/* High-Density Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {consolidatedTestimonials.map((data) => (
-              <motion.div
-                key={data.id}
-                variants={itemVariants}
-              >
-                <ReaderCard data={data} />
-              </motion.div>
-            ))}
+          {/* 60/40 Split Architecture - Masterpiece Reader Bento */}
+          <div className="flex flex-col lg:flex-row gap-6">
+            {/* Left Column (60%): 2x2 Grid of WhatsApp Screenshots */}
+            <div className="lg:w-3/5">
+              <div className="grid grid-cols-2 gap-4">
+                {consolidatedTestimonials.filter(data => data.type === 'whatsapp').map((data) => (
+                  <motion.div
+                    key={data.id}
+                    variants={itemVariants}
+                    className="aspect-square"
+                  >
+                    <ReaderCard data={data} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column (40%): Vertical Stack of Text Cards */}
+            <div className="lg:w-2/5">
+              <div className="flex flex-col gap-6 h-full">
+                {consolidatedTestimonials.filter(data => data.type !== 'whatsapp').map((data) => (
+                  <motion.div
+                    key={data.id}
+                    variants={itemVariants}
+                    className="flex-1"
+                  >
+                    <ReaderCard data={data} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </motion.div>
 

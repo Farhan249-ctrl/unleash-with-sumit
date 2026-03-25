@@ -3,6 +3,10 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight, MapPin, Users, TrendingUp, Brain, VolumeX } from 'lucide-react';
 
+// Cinematic Identity Asset Imports
+import sumitBefore from '@/assets/identity/sumit-before.jpeg';
+import sumitAfter from '@/assets/identity/sumit-after.jpeg';
+
 const IdentityShift = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -50,9 +54,9 @@ const IdentityShift = () => {
           </p>
         </motion.div>
 
-        {/* 2-Column Grid */}
+        {/* 2-Column Grid with Expanded Spacing */}
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -61,17 +65,17 @@ const IdentityShift = () => {
           <motion.div
             className="relative"
             variants={itemVariants}
+            initial={{ opacity: 0, x: -30 }}
           >
-            <div className="bg-[#121212] rounded-2xl p-8 border border-[#FACC15]/20">
-              {/* Grayscale Image Placeholder */}
+            <div className="bg-[#121212]/30 border border-white/5 rounded-2xl p-8">
+              {/* Real Before Image */}
               <div className="relative mb-6">
-                <div className="aspect-[4/5] bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <VolumeX className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-                      <p className="text-gray-400 text-sm">Silent Thinker</p>
-                    </div>
-                  </div>
+                <div className="aspect-[4/5] rounded-xl overflow-hidden">
+                  <img
+                    src={sumitBefore}
+                    alt="Sumit Before - The Silent Thinker"
+                    className="w-full h-full object-cover filter grayscale contrast-125 brightness-75"
+                  />
                 </div>
                 {/* Before Badge */}
                 <div className="absolute top-4 left-4">
@@ -104,7 +108,7 @@ const IdentityShift = () => {
                 <div className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-gray-600 flex-shrink-0 mt-0.5" />
                   <p className="text-[#E5E7EB] leading-relaxed">
-                    Dismissed by others as having 'no fire' or ambition.
+                    Fear of speaking to people.
                   </p>
                 </div>
               </div>
@@ -115,19 +119,17 @@ const IdentityShift = () => {
           <motion.div
             className="relative"
             variants={itemVariants}
+            initial={{ opacity: 0, x: 30 }}
           >
-            <div className="bg-[#121212] rounded-2xl p-8 border border-[#FACC15]/20">
-              {/* Full-Color Image Placeholder */}
+            <div className="bg-[#121212]/30 border border-yellow-500/20 shadow-[0_0_40px_rgba(250,204,21,0.2)] rounded-2xl p-8">
+              {/* Real After Image */}
               <div className="relative mb-6">
-                <div className="aspect-[4/5] bg-gradient-to-br from-[#FACC15]/20 to-[#FACC15]/5 rounded-xl overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-[#FACC15] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <MapPin className="w-8 h-8 text-[#0A0A0A]" />
-                      </div>
-                      <p className="text-[#FACC15] text-sm font-bold">National Speaker</p>
-                    </div>
-                  </div>
+                <div className="aspect-[4/5] rounded-xl overflow-hidden">
+                  <img
+                    src={sumitAfter}
+                    alt="Sumit After - The Confident Communicator"
+                    className="w-full h-full object-cover filter saturate-125 brightness-110"
+                  />
                 </div>
                 {/* After Badge */}
                 <div className="absolute top-4 left-4">
@@ -160,17 +162,19 @@ const IdentityShift = () => {
                 <div className="flex items-start gap-3">
                   <TrendingUp className="w-5 h-5 text-[#FACC15] flex-shrink-0 mt-0.5" />
                   <p className="text-[#E5E7EB] leading-relaxed">
-                    Generated 20 Lakh+ turnover through structured articulation.
+                    Published the book that's changing lives.
                   </p>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* The Bridge UI: Yellow Arrow */}
+          {/* The Bridge UI: Yellow Arrow with Floating Animation */}
           <motion.div
             className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden lg:block"
             variants={itemVariants}
+            animate={{ x: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
           >
             <div className="relative">
               {/* Arrow */}
