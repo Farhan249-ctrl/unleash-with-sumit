@@ -11,6 +11,7 @@ const AMAZON_LINK = "https://amzn.in/d/0izWwgtM";
 const HeroSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const containerVariants = {
@@ -18,14 +19,14 @@ const HeroSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   } as const;
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
@@ -38,16 +39,15 @@ const HeroSection = () => {
   } as const;
 
   const bookVariants = {
-    hidden: { opacity: 0, rotateY: -90, scale: 0.8 },
+    hidden: { opacity: 0, rotateY: -15 },
     visible: {
       opacity: 1,
       rotateY: 0,
-      scale: 1,
       transition: {
         type: "spring" as const,
         stiffness: 100,
-        damping: 25,
-        delay: 0.6,
+        damping: 20,
+        delay: 0.4,
       },
     },
   } as const;
@@ -75,43 +75,33 @@ const HeroSection = () => {
           animate={isInView ? "visible" : "hidden"}
         >
           {/* Text Content - Pyramid Principle */}
-          <motion.div className="flex-1 text-center lg:text-left" variants={itemVariants}>
-            <motion.div 
-              className="inline-block"
-              variants={itemVariants}
-            >
-              <p className="text-brand-yellow font-display text-xs font-bold tracking-widest uppercase mb-6 letter-spacing-wider">
-                Unleash with Sumit
-              </p>
-            </motion.div>
+          <motion.div 
+            className="flex-1 text-center lg:text-left"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h1 className="font-display text-fluid-4xl lg:text-fluid-5xl font-bold mb-6 text-white leading-tight">
+              Stop Being <span className="text-gradient-brand">Smartest Person in Room</span><br />
+              Who Stays Silent.
+            </h1>
+            <p className="text-[#EDEDED] text-fluid-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8">
+              You know the answers. You have the preparation. But when the moment comes, words dissolve. 
+              It's time to build the <span className="text-brand-yellow font-bold">architecture of your voice</span>.
+            </p>
             
-            {/* Main Headline - Largest */}
-            <motion.h1 
-              className="font-display text-fluid-4xl lg:text-fluid-5xl font-black leading-tight mb-4 text-white"
-              variants={itemVariants}
-            >
-              You Know the Answer.
-            </motion.h1>
+            {/* Social Proof */}
+            <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-brand-yellow rounded-full animate-pulse" />
+                <span className="text-white font-medium">200+ Founding Readers</span>
+              </div>
+              <div className="text-white/60 text-sm">•</div>
+              <div className="text-white/80 text-sm">Limited Launch Edition</div>
+            </div>
             
-            {/* Medium-weight Yellow Sub-headline */}
-            <motion.h2 
-              className="font-display text-fluid-2xl lg:text-fluid-3xl font-semibold leading-tight mb-6 text-brand-yellow"
-              variants={itemVariants}
-            >
-              But You Can't Say It.
-            </motion.h2>
-            
-            <motion.p 
-              className="text-white/90 text-fluid-lg mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-              variants={itemVariants}
-            >
-              The book that turns your silent knowledge into spoken confidence. Stop freezing. Start speaking.
-            </motion.p>
-
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6"
-              variants={itemVariants}
-            >
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <motion.a
                 href={FLIPKART_LINK}
                 target="_blank"
@@ -130,38 +120,16 @@ const HeroSection = () => {
                 href={AMAZON_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2 border-2 border-brand-yellow text-brand-yellow font-display font-semibold text-lg px-8 py-4 rounded-lg transition-all hover:bg-brand-yellow hover:text-brand-black"
+                className="group relative inline-flex items-center justify-center gap-2 border-2 border-brand-yellow text-brand-yellow font-display font-bold text-lg px-8 py-4 rounded-lg overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
               >
-                <ExternalLink className="w-5 h-5" />
-                Buy on Amazon
+                <div className="absolute inset-0 bg-brand-yellow opacity-0 group-hover:opacity-20 transition-opacity" />
+                <ExternalLink className="w-5 h-5 relative z-10" />
+                <span className="relative z-10">Buy on Amazon</span>
               </motion.a>
-            </motion.div>
-
-            <motion.div 
-              className="flex items-center gap-3 justify-center lg:justify-start text-brand-yellow/90 text-sm"
-              variants={itemVariants}
-            >
-              <Clock className="w-4 h-4" />
-              <span className="font-medium">Limited bonuses available — don't miss out</span>
-            </motion.div>
-
-            {/* Social Proof */}
-            <motion.div 
-              className="flex items-center gap-4 mt-6 justify-center lg:justify-start"
-              variants={itemVariants}
-            >
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-brand-yellow text-brand-yellow" />
-                ))}
-              </div>
-              <span className="text-sm text-white/80">
-                <strong>4.8/5</strong> from 2,847+ readers
-              </span>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* 3D Video Book Mockup - High-End Frame */}
@@ -180,40 +148,46 @@ const HeroSection = () => {
               {/* Video container with 3D transform */}
               <motion.div
                 className="relative w-72 lg:w-96 rounded-2xl overflow-hidden shadow-2xl border-2 border-brand-yellow/30"
-                style={{
-                  transformStyle: "preserve-3d",
-                  boxShadow: "0 25px 50px -12px rgba(234, 179, 8, 0.4)",
-                }}
                 whileHover={{
                   rotateY: 15,
-                  scale: 1.05,
-                  transition: { type: "spring" as const, stiffness: 100, damping: 20 },
                 }}
               >
-                <video
-                  src={bookVideo}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover rounded-2xl"
-                  onLoad={() => setIsVideoLoaded(true)}
-                  style={{ minHeight: '500px' }}
-                />
-                
-                {/* Loading placeholder */}
                 {!isVideoLoaded && (
-                  <div className="absolute inset-0 bg-brand-yellow/20 flex items-center justify-center rounded-2xl">
-                    <Play className="w-12 h-12 text-brand-yellow" />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/90">
+                    <div className="w-8 h-8 border-2 border-brand-yellow/30 border-t-brand-yellow rounded-full animate-spin" />
                   </div>
                 )}
-                
-                {/* Premium overlay */}
-                <div 
-                  className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/10 rounded-2xl pointer-events-none"
-                  style={{ transform: "translateZ(1px)" }}
+                <video
+                  className="w-full h-full object-cover"
+                  src={bookVideo}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onLoadedData={() => setIsVideoLoaded(true)}
+                  onMouseEnter={() => setIsPlaying(true)}
+                  onMouseLeave={() => setIsPlaying(false)}
                 />
+                
+                {/* Play Button Overlay */}
+                {!isPlaying && isVideoLoaded && (
+                  <motion.div 
+                    className="absolute inset-0 flex items-center justify-center bg-black/50"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center">
+                      <Play className="w-8 h-8 text-brand-black ml-1" />
+                    </div>
+                  </motion.div>
+                )}
               </motion.div>
+              {/* Premium overlay */}
+              <div 
+                className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/10 rounded-2xl pointer-events-none"
+                style={{ transform: "translateZ(1px)" }}
+              />
             </div>
           </motion.div>
         </motion.div>

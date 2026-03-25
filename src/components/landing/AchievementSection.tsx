@@ -6,35 +6,43 @@ import { Users, GraduationCap, MapPin, TrendingUp, Award, Target } from 'lucide-
 const achievements = [
   {
     icon: Users,
-    number: "600+",
-    label: "Participants at AI Hackathon",
-    description: "Mentored aspiring innovators through intensive AI challenges",
+    title: "600+ Participants",
+    subtitle: "AI Hackathon",
+    description: "Led cutting-edge artificial intelligence competition",
     featured: true,
-    color: "from-blue-500 to-cyan-500"
+    color: "bg-[#0A0A0A] border-[#FACC15] text-[#FFFFFF]"
   },
   {
-    icon: GraduationCap,
-    number: "180+",
-    label: "Engineering Students trained",
-    description: "Transformed technical communication skills for career success",
+    icon: Target,
+    title: "180+ Engineering Students",
+    subtitle: "GD & Interview Training",
+    description: "Transformed communication skills for technical interviews",
     featured: false,
-    color: "from-green-500 to-emerald-500"
+    color: "bg-[#0A0A0A] border-[#FACC15] text-[#FFFFFF]"
   },
   {
     icon: MapPin,
-    number: "40+",
-    label: "Cities/7 States visited",
-    description: "Delivered impactful workshops across the nation",
-    featured: true,
-    color: "from-purple-500 to-pink-500"
+    title: "40+ Cities",
+    subtitle: "Across 7 States",
+    description: "Traveled nationwide to deliver workshops",
+    featured: false,
+    color: "bg-[#0A0A0A] border-[#FACC15] text-[#FFFFFF]"
   },
   {
     icon: TrendingUp,
-    number: "20 Lakh+",
-    label: "Turnover generated",
-    description: "Created measurable economic impact through training programs",
+    title: "20 Lakh+ Turnover",
+    subtitle: "Business Generated",
+    description: "Created substantial economic impact through communication training",
+    featured: false,
+    color: "bg-[#0A0A0A] border-[#FACC15] text-[#FFFFFF]"
+  },
+  {
+    icon: Award,
+    title: "National Convention Host",
+    subtitle: "Chennai",
+    description: "Led 300+ audience including founders and co-founders",
     featured: true,
-    color: "from-orange-500 to-red-500"
+    color: "bg-[#0A0A0A] border-[#FACC15] text-[#FFFFFF]"
   },
   {
     icon: Award,
@@ -98,11 +106,7 @@ const AchievementSection = () => {
   } as const;
 
   return (
-    <section ref={ref} className="py-24 px-4 bg-gradient-to-br from-brand-black via-brand-dark to-brand-black relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-brand-yellow/10 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-brand-yellow/5 to-transparent rounded-full blur-3xl" />
-      
+    <section ref={ref} className="py-24 px-4 bg-[#0A0A0A] relative overflow-hidden">
       <div className="container mx-auto max-w-7xl relative z-10">
         <motion.div 
           className="text-center mb-16"
@@ -110,78 +114,62 @@ const AchievementSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-display text-fluid-3xl lg:text-fluid-4xl font-bold mb-4 text-white">
-            Numbers That Matter
+          <h2 className="font-display text-fluid-3xl lg:text-fluid-4xl font-bold mb-4 text-[#FFFFFF]">
+            Numbers That <span className="text-[#FACC15]">Matter</span>
           </h2>
-          <p className="text-white/80 text-fluid-lg max-w-3xl mx-auto leading-relaxed">
-            Real impact measured in lives transformed and careers launched. Every number represents a story of growth and achievement.
+          <p className="text-[#EDEDED] text-fluid-lg max-w-3xl mx-auto leading-relaxed">
+            Real impact metrics from Sumit's journey as a communication expert and entrepreneur
           </p>
         </motion.div>
 
-        {/* Asymmetric Bento Box Grid */}
+        {/* Achievement Grid */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
           {achievements.map((achievement, i) => (
             <motion.div
-              key={achievement.label}
+              key={`${achievement.title}-${i}`}
               className={`
-                relative overflow-hidden rounded-2xl p-6 border transition-all duration-300 group
+                relative overflow-hidden rounded-2xl p-6 border-2 transition-all duration-300
                 ${achievement.featured 
-                  ? achievement.label.includes("600+") 
-                    ? 'lg:col-span-2 lg:row-span-2 bg-gradient-to-br ' + achievement.color + ' text-white' 
-                    : 'lg:col-span-2 bg-gradient-to-br ' + achievement.color + ' text-white'
-                  : 'bg-brand-dark/50 border-brand-yellow/20 hover:border-brand-yellow/50 hover:shadow-lg'
+                  ? 'lg:col-span-2 lg:row-span-2' 
+                  : ''
                 }
+                ${achievement.color}
               `}
-              variants={achievement.featured ? featuredVariants : itemVariants}
+              variants={itemVariants}
               whileHover={{ 
-                y: -4,
-                scale: achievement.featured ? 1.02 : 1.01 
+                scale: 1.02,
+                transition: { type: "spring" as const, stiffness: 100, damping: 20 }
               }}
             >
-              {/* Background gradient for featured cards */}
-              {achievement.featured && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-              )}
-              
               <div className="relative z-10">
                 <div className={`
                   w-12 h-12 rounded-xl flex items-center justify-center mb-4
                   ${achievement.featured 
-                    ? 'bg-white/20' 
-                    : 'bg-brand-yellow/10'
+                    ? 'bg-[#FACC15]' 
+                    : 'bg-[#FACC15]/20'
                   }
                 `}>
-                  <achievement.icon className={`w-6 h-6 ${achievement.featured ? 'text-white' : 'text-brand-yellow'}`} />
+                  <achievement.icon className={`w-6 h-6 ${achievement.featured ? 'text-[#0A0A0A]' : 'text-[#FACC15]'}`} />
                 </div>
-                
-                <div className="mb-2">
-                  <div className={`font-display font-bold ${achievement.featured ? 'text-4xl lg:text-5xl' : 'text-2xl lg:text-3xl'} mb-1`}>
-                    {achievement.number}
-                  </div>
-                  <h3 className={`font-display font-bold ${achievement.featured ? 'text-lg' : 'text-base'} text-white`}>
-                    {achievement.label}
-                  </h3>
-                </div>
-                
-                <p className={`
-                  leading-relaxed text-sm
-                  ${achievement.featured ? 'text-white/90' : 'text-white/70'}
-                `}>
+                <h3 className={`font-display font-bold text-lg mb-2 ${achievement.featured ? 'text-[#FFFFFF]' : 'text-[#FFFFFF]'}`}>
+                  {achievement.title}
+                </h3>
+                <p className={`text-sm font-medium mb-1 ${achievement.featured ? 'text-[#FACC15]' : 'text-[#EDEDED]'}`}>
+                  {achievement.subtitle}
+                </p>
+                <p className={`text-xs leading-relaxed ${achievement.featured ? 'text-[#EDEDED]' : 'text-[#EDEDED]'}`}>
                   {achievement.description}
                 </p>
               </div>
-
-              {/* Hover overlay for featured cards */}
+              
               {achievement.featured && (
-                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-sm font-medium">Verified Impact</div>
-                  </div>
+                <div className="absolute top-4 right-4">
+                  <div className="w-2 h-2 bg-[#FACC15] rounded-full animate-pulse" />
                 </div>
               )}
             </motion.div>
