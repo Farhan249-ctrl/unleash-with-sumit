@@ -16,7 +16,7 @@ const ExitSection = () => {
             href="https://www.instagram.com/unleashwithsumit/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 border border-[#FACC15]/30 text-[#FACC15] px-6 py-3 rounded-lg transition-all hover:bg-[#FACC15]/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(250,204,21,0.3)] font-semibold"
+            className="inline-flex items-center justify-center gap-2 border border-[#FACC15]/30 text-[#FACC15] px-6 py-3 rounded-xl font-semibold transition-all duration-200 bg-zinc-900/50 backdrop-blur-sm hover:bg-[#FACC15]/10 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] active:scale-95 w-full sm:w-auto"
           >
             <Instagram className="w-5 h-5" />
             @unleashwithsumit
@@ -25,9 +25,9 @@ const ExitSection = () => {
             href="https://chat.whatsapp.com/DtQcuAcQz5e9WUhC3bHTav"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 border border-[#E5E7EB]/20 text-[#E5E7EB]/60 px-6 py-3 rounded-lg transition-all hover:bg-[#E5E7EB]/5 hover:scale-105 hover:shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:border-[#FACC15]/50 font-semibold"
+            className="inline-flex items-center justify-center gap-2 border border-[#25D366] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 bg-[#25D366]/5 backdrop-blur-sm hover:bg-[#25D366]/10 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(37,211,102,0.3)] active:scale-95 w-full sm:w-auto"
           >
-            <MessageCircle className="w-5 h-5" />
+            <MessageCircle className="w-5 h-5 text-[#25D366]" />
             Join WhatsApp Group
           </a>
         </div>

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Clock, AlertCircle } from 'lucide-react';
+import { ShoppingCart, Clock, AlertCircle, ArrowRight } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
 
 const FLIPKART_LINK = "https://dl.flipkart.com/s/y8iqsbNNNN";
@@ -83,48 +83,131 @@ const StickyBuyHeader = () => {
 
   return (
     <>
-      {/* Thin Blurred Glass Bar - Sticky Urgency with 30-min Timer */}
+      {/* Bio-Hazard Red Alert Bar - High-Stakes Psychology */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
-        className="fixed top-0 left-0 right-0 z-[100] bg-gradient-to-r from-[#0A0A0A] via-[#1A1A1A] to-[#0A0A0A] backdrop-blur-xl border-b-2 border-[#FACC15] shadow-[0_4px_20px_rgba(250,204,21,0.3)]"
+        animate={{ 
+          opacity: 1, 
+          y: 0,
+          scale: [1, 1.01, 1]
+        }}
+        transition={{ 
+          type: "spring" as const, stiffness: 100, damping: 20,
+          scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+        }}
+        className="fixed top-0 left-0 right-0 z-[100] backdrop-blur-xl border-b-2 border-[#FACC15] shadow-[0_4px_20px_rgba(239,68,68,0.5)] will-change-transform animate-pulse"
+        style={{
+          background: 'linear-gradient(to right, rgba(127, 29, 29, 0.9), rgba(0, 0, 0, 0.95), rgba(127, 29, 29, 0.9))'
+        }}
       >
-        <div className="container mx-auto flex items-center justify-between py-3 px-4">
-          <div className="flex items-center gap-3">
-            <Clock className="w-4 h-4 text-[#FACC15]" />
+        {/* Glass-Amber Separator - Vertical Divider */}
+        <div className="absolute left-1/3 top-0 bottom-0 w-px bg-zinc-800 opacity-50" />
+        <div className="absolute left-2/3 top-0 bottom-0 w-px bg-zinc-800 opacity-50" />
+        <motion.div
+          animate={{
+            boxShadow: ['0 4px 20px rgba(239,68,68,0.5)', '0 4px 40px rgba(239,68,68,0.8)', '0 4px 20px rgba(239,68,68,0.5)']
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="container mx-auto py-3 px-4"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1.5fr 1fr 1.5fr'
+          }}
+        >
+          {/* Left Sector - Curiosity */}
+          <div className="hidden md:flex items-center gap-3 border-r border-zinc-800 pr-4">
             <motion.span 
-              className="font-display font-bold text-sm text-white"
+              className="font-display font-bold text-sm text-white text-left"
               animate={{ opacity: [1, 0.7, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              Exclusive Launch Offer: First 50 Buyers Only — Limited Bonuses Inside
+              � OFFER UNLOCKED: The Communication Blueprint is yours for ₹349—until the clock hits zero.
             </motion.span>
           </div>
           
+          {/* Center Sector - Masterclass Clock */}
           {isClient && (
-            <div className="flex items-center gap-2">
+            <motion.div 
+              className="flex items-center justify-center"
+              animate={{
+                x: [0, 1, 0, -1, 0]
+              }}
+              transition={{
+                duration: 0.5,
+                repeat: 10,
+                repeatDelay: 9.5,
+                ease: "easeInOut"
+              }}
+            >
               <div className="flex items-center gap-1">
-                <div className="bg-[#FACC15] px-3 py-1.5 rounded font-mono font-bold text-sm text-black">
+                <motion.div 
+                  className="px-4 py-2 rounded-lg font-mono font-bold text-sm bg-zinc-900/80 backdrop-blur-md border border-amber-500/30 shadow-[0_0_15px_rgba(251,191,36,0.2)]"
+                  key={timeLeft.minutes}
+                  initial={{ rotateY: 90, opacity: 0 }}
+                  animate={{ rotateY: 0, opacity: 1 }}
+                  transition={{ duration: 0.05, ease: "easeOut" }}
+                >
                   {formatTime(timeLeft.minutes)}
-                </div>
-                <span className="text-xs text-white/60">:</span>
-                <div className="bg-[#FACC15] px-3 py-1.5 rounded font-mono font-bold text-sm text-black">
+                </motion.div>
+                <motion.span 
+                  className="text-xs text-yellow-400 font-bold"
+                  animate={{ opacity: [1, 0.2, 1] }}
+                  transition={{ duration: 0.5, repeat: Infinity }}
+                >
+                  :
+                </motion.span>
+                <motion.div 
+                  className="px-4 py-2 rounded-lg font-mono font-bold text-sm bg-zinc-900/80 backdrop-blur-md border border-amber-500/30 shadow-[0_0_15px_rgba(251,191,36,0.2)]"
+                  key={timeLeft.seconds}
+                  initial={{ rotateY: 90, opacity: 0 }}
+                  animate={{ rotateY: 0, opacity: 1 }}
+                  transition={{ duration: 0.05, ease: "easeOut" }}
+                >
                   {formatTime(timeLeft.seconds)}
-                </div>
+                </motion.div>
               </div>
               <span className="text-xs text-white/60 ml-1">left</span>
-            </div>
+            </motion.div>
           )}
           
-          <div className="flex items-center gap-2 text-sm font-medium">
+          {/* Right Sector - Live Social Proof */}
+          <div className="flex flex-row items-center justify-end gap-4 border-l border-zinc-800 pl-4">
             <div className="relative">
-              <div className="w-2 h-2 bg-[#EF4444] rounded-full"></div>
+              <motion.div
+                className="w-2 h-2 bg-[#EF4444] rounded-full"
+                animate={{
+                  boxShadow: ['0 0 10px rgba(239,68,68,0.8)', '0 0 20px rgba(239,68,68,1)', '0 0 10px rgba(239,68,68,0.8)']
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
               <div className="absolute inset-0 w-2 h-2 bg-[#EF4444] rounded-full animate-ping"></div>
+              <div className="absolute -left-4 top-0">
+                <motion.span 
+                  className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold"
+                  animate={{
+                    boxShadow: ['0 0 10px rgba(239,68,68,0.5)', '0 0 15px rgba(239,68,68,0.8)', '0 0 10px rgba(239,68,68,0.5)']
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  LIVE
+                </motion.span>
+              </div>
             </div>
-            <span className="text-white/80">Limited Bonuses Available</span>
+            <span className="text-white/80 text-sm font-medium">Limited Bonuses Available</span>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Sticky Buy Header - Single Button */}
@@ -142,7 +225,7 @@ const StickyBuyHeader = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-[#FACC15] rounded-full animate-pulse" />
                   <span className="text-white text-sm font-medium">
-                    Exclusive Launch: ₹349 + Bonuses Worth ₹1496
+                    Exclusive Launch: <span className="text-gray-500 line-through">₹1,845</span> <span className="text-[#FACC15] font-bold text-lg animate-pulse">₹349</span> + Bonuses Worth ₹1496
                   </span>
                   {isClient && (
                     <span className="text-[#FACC15] font-mono text-sm">
@@ -151,24 +234,51 @@ const StickyBuyHeader = () => {
                   )}
                 </div>
                 
-                {/* Single Buy Now Button */}
-                <motion.a
-                  href={FLIPKART_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#FACC15] text-[#0A0A0A] font-display font-bold text-sm px-6 py-3 rounded-lg transition-all"
-                  whileHover={{ 
-                    scale: 1.05,
-                    transition: { type: "spring" as const, stiffness: 100, damping: 20 }
-                  }}
-                  whileTap={{ 
-                    scale: 0.98,
-                    transition: { type: "spring" as const, stiffness: 100, damping: 20 }
-                  }}
-                >
-                  <ShoppingCart className="w-4 h-4" />
-                  <span>Buy Now</span>
-                </motion.a>
+                {/* Magnetic Black Hole CTA with Focus Thief Arrow */}
+                <div className="flex items-center gap-2">
+                  <motion.svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="text-white will-change-transform"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      x: [0, 3, 0]
+                    }}
+                    transition={{
+                      duration: 0.8,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <path
+                      d="M5 12h14m-7-7l7 7-7 7"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </motion.svg>
+                  <motion.a
+                    href={FLIPKART_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#FACC15] text-[#0A0A0A] font-display font-bold text-sm px-6 py-3 rounded-lg transition-all shadow-[0_0_40px_rgba(251,191,36,0.4)] will-change-transform"
+                    whileHover={{ 
+                      scale: 1.05,
+                      rotate: [0, 1, -1, 0],
+                      transition: { type: "spring" as const, stiffness: 100, damping: 20 }
+                    }}
+                    whileTap={{ 
+                      scale: 0.98,
+                      transition: { type: "spring" as const, stiffness: 100, damping: 20 }
+                    }}
+                  >
+                    <ShoppingCart className="w-4 h-4" />
+                    <span>Buy Now</span>
+                  </motion.a>
+                </div>
               </div>
             </div>
           </motion.div>

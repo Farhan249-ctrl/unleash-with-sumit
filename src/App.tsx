@@ -8,6 +8,26 @@ import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
 
+// Global Interaction State
+let hasInteracted = false;
+
+// Global Interaction Listener - Fix Browser Policy Wall
+const handleFirstInteraction = () => {
+  if (!hasInteracted) {
+    hasInteracted = true;
+    console.log("User interaction detected - enabling video autoplay");
+    // Dispatch custom event for VideoShowcase to listen for
+    window.dispatchEvent(new CustomEvent('userInteraction'));
+  }
+};
+
+// Listen for global interaction events
+if (typeof window !== 'undefined') {
+  window.addEventListener('click', handleFirstInteraction, { once: true });
+  window.addEventListener('touchstart', handleFirstInteraction, { once: true });
+  window.addEventListener('keydown', handleFirstInteraction, { once: true });
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>

@@ -50,16 +50,10 @@ const HowItWorks = () => {
                     href={FLIPKART_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-[#FACC15] transition-colors inline-block"
+                    className="cursor-pointer text-yellow-500 hover:text-yellow-400 transition-colors underline inline-block"
                     whileHover={{ scale: 1.02 }}
                   >
                     {title}
-                    <motion.div
-                      className="h-0.5 bg-[#FACC15] mt-0.5 origin-left"
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.2 }}
-                    />
                   </motion.a>
                 ) : (
                   <span className="text-white">{title}</span>
@@ -71,7 +65,7 @@ const HowItWorks = () => {
                     href={WHATSAPP_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#FACC15] hover:text-[#FACC15]/80 transition-colors underline inline-block"
+                    className="cursor-pointer text-yellow-500 hover:text-yellow-400 transition-colors underline inline-block"
                     whileHover={{ scale: 1.05 }}
                   >
                     Send it on WhatsApp

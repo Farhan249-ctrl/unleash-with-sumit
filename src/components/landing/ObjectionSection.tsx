@@ -1,4 +1,5 @@
 import { MessageCircle, User, Clock, Youtube, Globe, Timer, Target } from "lucide-react";
+import { motion } from 'framer-motion';
 
 const objections = [
   {
@@ -47,13 +48,37 @@ const ObjectionSection = () => {
         </h2>
         <div className="space-y-4">
           {objections.map(({ icon: Icon, objection, answer }, i) => (
-            <div key={i} className="bg-[#121212] rounded-xl p-6 border border-[#FACC15]/20">
+            <motion.div 
+              key={i} 
+              className="bg-black rounded-xl p-6 border border-transparent transition-all duration-300"
+              whileHover={{ 
+                y: -8, 
+                scale: 1.02,
+                backgroundColor: 'rgba(251, 191, 36, 0.2)',
+                borderColor: 'rgb(251, 191, 36)',
+                boxShadow: '0 0 30px rgba(251, 191, 36, 0.2)'
+              }}
+              transition={{
+                duration: 0.3,
+                ease: [0.33, 1, 0.68, 1]
+              }}
+            >
               <div className="flex items-center gap-3 mb-3">
-                <Icon className="w-6 h-6 text-[#FACC15] flex-shrink-0" />
+                <motion.div
+                  whileHover={{
+                    scale: [1, 1.3, 1]
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: [0.33, 1, 0.68, 1]
+                  }}
+                >
+                  <Icon className="w-6 h-6 text-[#FACC15] flex-shrink-0" />
+                </motion.div>
                 <h3 className="font-display font-bold text-lg text-white">{objection}</h3>
               </div>
               <p className="text-[#E5E7EB] pl-9">{answer}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

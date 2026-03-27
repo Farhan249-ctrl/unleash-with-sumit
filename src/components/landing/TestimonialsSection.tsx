@@ -109,8 +109,9 @@ const TestimonialsSection = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <h2 className="font-display text-fluid-3xl lg:text-fluid-4xl font-bold mb-4">
-            Real People. <span className="text-gradient-brand">Real Results.</span>
+          <h2 className="font-display text-fluid-3xl lg:text-fluid-4xl font-black mb-4 relative inline-block">
+            <span className="text-white">WALL OF</span>
+            <span className="text-[#FBBF24] ml-2">TRUST</span>
           </h2>
           <p className="text-muted-foreground text-fluid-lg max-w-2xl mx-auto leading-relaxed">
             Don't take our word for it — hear from readers who transformed their communication and careers
@@ -146,11 +147,18 @@ const TestimonialsSection = () => {
         </motion.div>
 
         {/* Asymmetric Testimonials Grid */}
+        {/* Enhanced Testimonials Grid with Staggered Arrival */}
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
+          style={{
+            transition: {
+              staggerChildren: 0.2,
+              delayChildren: 0.15,
+            },
+          }}
         >
           {testimonials.map((testimonial, i) => (
             <motion.div

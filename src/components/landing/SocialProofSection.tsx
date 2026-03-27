@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MessageCircle, Star, Award, CheckCircle, Quote, Users } from 'lucide-react';
+import { MessageCircle, Star, CheckCircle, Quote } from 'lucide-react';
 
-// Zero-Failure Local Faculty Asset Imports
+// Faculty Asset Imports
 import fac1 from '@/assets/faculty/fac-1-aravind.jpeg';
 import fac2 from '@/assets/faculty/fac-2-placement.jpeg';
 import fac3 from '@/assets/faculty/fac-3-suthendran.jpeg';
@@ -11,7 +11,7 @@ import fac4 from '@/assets/faculty/fac-4-brintha.jpeg';
 import fac5 from '@/assets/faculty/fac-5-shubathra.jpeg';
 import fac6 from '@/assets/faculty/fac-6-librarian.jpeg';
 
-// Hard-Link WhatsApp Testimonial Asset Imports
+// WhatsApp Testimonial Asset Imports
 import wa1 from '@/assets/testimonials/wa-1.jpeg';
 import wa2 from '@/assets/testimonials/wa-2.jpeg';
 import wa3 from '@/assets/testimonials/wa-3.jpeg';
@@ -20,7 +20,7 @@ import wa4 from '@/assets/testimonials/wa-4.jpeg';
 // WhatsApp Link
 const WHATSAPP_LINK = "https://wa.me/917070669435?text=I%20just%20bought%20the%20book!";
 
-// Tier 1: Academic Authority - 6 Faculty Endorsements
+// Faculty Endorsements Data
 const facultyEndorsements = [
   {
     id: "faculty-1",
@@ -78,7 +78,7 @@ const facultyEndorsements = [
   }
 ];
 
-// Tier 2: Reader Success - Testimonials and WhatsApp Screenshots
+// Testimonials Data
 const consolidatedTestimonials = [
   {
     id: "whatsapp-1",
@@ -140,6 +140,7 @@ const consolidatedTestimonials = [
   }
 ];
 
+// Academic Card Component
 const AcademicCard = ({ data }: { data: typeof facultyEndorsements[0] }) => {
   return (
     <motion.div
@@ -149,7 +150,7 @@ const AcademicCard = ({ data }: { data: typeof facultyEndorsements[0] }) => {
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.02 }}
     >
-      {/* KLU Badge - Elegant Floating Tag */}
+      {/* KLU Badge */}
       <div className="absolute top-4 right-4 z-20">
         <div className="bg-[#FACC15]/20 backdrop-blur-sm border border-[#FACC15]/30 px-3 py-1 rounded-full">
           <span className="text-[#FACC15] text-xs font-bold">
@@ -158,10 +159,10 @@ const AcademicCard = ({ data }: { data: typeof facultyEndorsements[0] }) => {
         </div>
       </div>
 
-      {/* 2-Column Grid Layout */}
+      {/* Content */}
       <div className="p-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left Column: Image */}
+          {/* Image */}
           <div className="relative">
             <div className="aspect-[3/4] rounded-xl overflow-hidden">
               <img
@@ -170,7 +171,7 @@ const AcademicCard = ({ data }: { data: typeof facultyEndorsements[0] }) => {
                 className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
               />
             </div>
-            {/* Verified Badge Overlay on Photo */}
+            {/* Verified Badge */}
             {data.verified && (
               <div className="absolute bottom-4 left-4">
                 <div className="bg-[#FACC15] rounded-full p-2 shadow-lg">
@@ -180,9 +181,8 @@ const AcademicCard = ({ data }: { data: typeof facultyEndorsements[0] }) => {
             )}
           </div>
 
-          {/* Right Column: Text */}
+          {/* Text */}
           <div className="flex flex-col justify-center">
-            {/* Name and Title */}
             <h3 className="font-display font-bold text-xl md:text-2xl text-[#FACC15] mb-2">
               {data.name}
             </h3>
@@ -204,9 +204,9 @@ const AcademicCard = ({ data }: { data: typeof facultyEndorsements[0] }) => {
   );
 };
 
+// Reader Card Component
 const ReaderCard = ({ data }: { data: typeof consolidatedTestimonials[0] }) => {
   if (data.type === 'whatsapp') {
-    // WhatsApp Screenshot Card - Smartphone Frame with 30/70 split
     return (
       <motion.div
         className="bg-[#121212]/40 backdrop-blur-xl border border-[#FACC15]/10 rounded-2xl p-4 aspect-square h-full flex flex-col"
@@ -215,7 +215,7 @@ const ReaderCard = ({ data }: { data: typeof consolidatedTestimonials[0] }) => {
         transition={{ duration: 0.5 }}
         whileHover={{ scale: 1.02 }}
       >
-        {/* Top 30%: Text Hook */}
+        {/* Header */}
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
@@ -228,14 +228,13 @@ const ReaderCard = ({ data }: { data: typeof consolidatedTestimonials[0] }) => {
           <p className="text-[#E5E7EB] text-xs leading-relaxed">{data.message}</p>
         </div>
 
-        {/* Bottom 70%: Screenshot Image */}
+        {/* Screenshot */}
         <div className="flex-1 bg-black rounded-xl p-2 border border-[#FACC15]/20 relative overflow-hidden">
           <img
             src={data.screenshot}
             alt="WhatsApp Screenshot"
             className="w-full h-full object-cover rounded-lg"
           />
-          {/* Phone Frame Overlay */}
           <div className="absolute inset-0 border-2 border-[#FACC15]/30 rounded-lg pointer-events-none" />
           
           {/* Rating Badge */}
@@ -249,11 +248,10 @@ const ReaderCard = ({ data }: { data: typeof consolidatedTestimonials[0] }) => {
       </motion.div>
     );
   } else {
-    // Deep Transformation Text Card
     return (
       <motion.div
         className={`
-          relative overflow-hidden rounded-2xl p-6 border transition-all duration-300 h-full flex flex-col
+          relative overflow-hidden rounded-2xl p-6 border transition-all duration-300 h-full flex flex-col min-h-[350px] justify-between
           ${data.featured 
             ? 'bg-[#FACC15] text-[#0A0A0A] border-[#FACC15]' 
             : 'bg-[#121212]/40 backdrop-blur-xl border-[#FACC15]/10'
@@ -264,7 +262,7 @@ const ReaderCard = ({ data }: { data: typeof consolidatedTestimonials[0] }) => {
         transition={{ duration: 0.5 }}
         whileHover={{ scale: 1.02 }}
       >
-        {/* Avatar and Name */}
+        {/* Header */}
         <div className="flex items-start gap-4 mb-4">
           <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-lg ${
             data.featured ? 'bg-[#0A0A0A] text-[#FACC15]' : 'bg-[#FACC15] text-[#0A0A0A]'
@@ -315,6 +313,7 @@ const ReaderCard = ({ data }: { data: typeof consolidatedTestimonials[0] }) => {
   }
 };
 
+// Main SocialProofSection Component
 const SocialProofSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -345,129 +344,104 @@ const SocialProofSection = () => {
   } as const;
 
   return (
-    <section ref={ref} className="py-24 px-4 bg-[#0A0A0A] relative overflow-hidden">
+    <section ref={ref} className="py-8 px-4 pb-16 bg-[#0A0A0A] relative overflow-hidden" style={{ paddingBottom: '4rem !important', marginBottom: '0 !important', paddingTop: '0 !important' }}>
       <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Section Header */}
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="font-display text-fluid-3xl lg:text-fluid-4xl font-bold mb-4 text-white">
-            Wall of <span className="text-[#FACC15]">Trust</span>
-          </h2>
-          <p className="text-white text-fluid-lg max-w-3xl mx-auto leading-relaxed">
-            Institutional endorsements and real success stories from students who transformed their communication
-          </p>
-        </motion.div>
-
-        {/* Tier 1: Academic Authority - Top Row */}
-        <motion.div 
-          className="mb-16"
+        {/* Social Proof Grid with Enhanced Stagger */}
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 pb-0 max-w-7xl mx-auto"
+          style={{
+            transition: {
+              staggerChildren: 0.15,
+              delayChildren: 0.1,
+            },
+          }}
         >
-          <motion.div 
-            className="flex items-center gap-3 mb-8"
+          {/* Sovereign Badge Architecture */}
+          <motion.div
             variants={itemVariants}
+            className="col-span-1 md:col-span-2 text-center mb-20 relative"
           >
-            <div className="w-12 h-12 bg-[#FACC15] rounded-full flex items-center justify-center">
-              <Award className="w-6 h-6 text-[#0A0A0A]" />
-            </div>
-            <div>
-              <h3 className="font-display text-2xl font-bold text-white">Academic Authority</h3>
-              <p className="text-white">Institutional endorsements from India's premier educational institutions</p>
+            {/* Ghost-Text Liquidation - Remove visual noise */}
+            
+            {/* Sovereign Badge with Spotlight Glow */}
+            <div className="relative inline-block py-12 px-8">
+              {/* Background Spotlight Glow */}
+              <div className="absolute inset-0 bg-yellow-500/10 blur-3xl rounded-2xl -z-10"></div>
+              
+              {/* Clean Typography */}
+              <h2 className="relative font-sans-serif font-bold text-4xl md:text-6xl tracking-tighter mb-0">
+                <span className="text-white">WALL OF</span>
+                <span className="text-yellow-500 font-black ml-2">TRUST</span>
+              </h2>
+              
+              {/* Academic Sub-heading */}
+              <p className="uppercase tracking-[0.25em] text-zinc-500 mt-3">
+                ACADEMIC AUTHORITY FROM KLU'S FINEST EDUCATORS
+              </p>
             </div>
           </motion.div>
 
-          {/* 1 Column (Mobile) / 2 Columns (Desktop) Grid for Wide Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {facultyEndorsements.map((endorsement) => (
-              <motion.div
-                key={endorsement.id}
-                variants={itemVariants}
-              >
-                <AcademicCard data={endorsement} />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Tier 2: Reader Success - Bottom Bento Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          <motion.div 
-            className="flex items-center gap-3 mb-8"
+          {/* Faculty Section */}
+          <motion.div
             variants={itemVariants}
+            className="col-span-1 md:col-span-2 text-center mb-8"
           >
-            <div className="w-12 h-12 bg-[#FACC15] rounded-full flex items-center justify-center">
-              <Users className="w-6 h-6 text-[#0A0A0A]" />
-            </div>
-            <div>
-              <h3 className="font-display text-2xl font-bold text-white">Reader Success</h3>
-              <p className="text-white">Real WhatsApp messages and testimonials from students who transformed their communication</p>
+            <p className="text-[#FACC15] text-sm md:text-base font-bold tracking-[0.2em] uppercase border-b-2 border-[#FACC15] pb-2 mb-12 inline-block">
+              Academic Authority from KLU's Finest Educators
+            </p>
+          </motion.div>
+
+          {/* Faculty Endorsements */}
+          {facultyEndorsements.map((faculty) => (
+            <motion.div key={faculty.id} variants={itemVariants}>
+              <AcademicCard data={faculty} />
+            </motion.div>
+          ))}
+
+          {/* What Readers Say - Left-Heavy Asymmetric Layout */}
+          <motion.div
+            variants={itemVariants}
+            className="col-span-1 md:col-span-2 text-left mb-8 relative"
+          >
+            {/* Heading to the left */}
+            <h3 className="text-2xl md:text-3xl font-black mb-4 inline-block">
+              Direct Results: Unfiltered Success Stories
+            </h3>
+            
+            {/* Verified Testimonials badge on the right */}
+            <div className="flex items-center gap-2 mb-4">
+              <div className="bg-green-500 text-white text-xs px-3 py-1 rounded-full flex items-center gap-1 font-bold">
+                <CheckCircle className="w-3 h-3" />
+                <span>Verified Testimonials</span>
+              </div>
             </div>
           </motion.div>
 
-          {/* 60/40 Split Architecture - Masterpiece Reader Bento */}
-          <div className="flex flex-col lg:flex-row gap-6">
-            {/* Left Column (60%): 2x2 Grid of WhatsApp Screenshots */}
-            <div className="lg:w-3/5">
-              <div className="grid grid-cols-2 gap-4">
-                {consolidatedTestimonials.filter(data => data.type === 'whatsapp').map((data) => (
-                  <motion.div
-                    key={data.id}
-                    variants={itemVariants}
-                    className="aspect-square"
-                  >
-                    <ReaderCard data={data} />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          {/* WhatsApp Screenshots */}
+          {consolidatedTestimonials.filter(t => t.type === 'whatsapp').map((testimonial) => (
+            <motion.div key={testimonial.id} variants={itemVariants}>
+              <ReaderCard data={testimonial} />
+            </motion.div>
+          ))}
 
-            {/* Right Column (40%): Vertical Stack of Text Cards */}
-            <div className="lg:w-2/5">
-              <div className="flex flex-col gap-6 h-full">
-                {consolidatedTestimonials.filter(data => data.type !== 'whatsapp').map((data) => (
-                  <motion.div
-                    key={data.id}
-                    variants={itemVariants}
-                    className="flex-1"
-                  >
-                    <ReaderCard data={data} />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* WhatsApp CTA */}
-        <motion.div 
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <motion.a
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#FACC15] text-[#0A0A0A] font-display font-bold text-lg px-8 py-4 rounded-lg transition-all"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
+          {/* Farhan Card - Final Testimonial */}
+          <motion.div
+            variants={itemVariants}
+            className="col-span-1"
           >
-            <MessageCircle className="w-5 h-5" />
-            <span>Send Screenshot to 7070669435</span>
-            <span className="text-sm font-normal">Get Bonuses</span>
-          </motion.a>
+            <ReaderCard data={consolidatedTestimonials.find(t => t.id === "testimonial-1")!} />
+          </motion.div>
+
+          {/* Masthan Card - Final Testimonial */}
+          <motion.div
+            variants={itemVariants}
+            className="col-span-1"
+          >
+            <ReaderCard data={consolidatedTestimonials.find(t => t.id === "testimonial-2")!} />
+          </motion.div>
         </motion.div>
       </div>
     </section>

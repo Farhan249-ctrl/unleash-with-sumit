@@ -73,8 +73,8 @@ const AuthorSection = () => {
             variants={itemVariants}
           >
             <div className="relative group">
-              {/* Golden glow effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-brand-yellow to-brand-yellow-glow rounded-2xl opacity-30 group-hover:opacity-50 transition-opacity blur-xl" />
+              {/* Golden Amber glow effect */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-amber-400 to-amber-300 rounded-2xl opacity-20 group-hover:opacity-40 transition-all duration-500 ease-out blur-xl" />
               
               <motion.img
                 src={sumitAuthor}
@@ -82,9 +82,9 @@ const AuthorSection = () => {
                 loading="lazy"
                 width={300}
                 height={300}
-                className="w-64 lg:w-80 h-64 lg:h-80 rounded-2xl object-cover border-4 border-brand-yellow shadow-2xl"
+                className="w-64 lg:w-80 h-64 lg:h-80 rounded-2xl object-cover border-4 border-amber-400/50 shadow-2xl transition-all duration-500 ease-out hover:shadow-[0_0_30px_rgba(251,191,36,0.4)]"
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
+                transition={{ type: "spring" as const, stiffness: 100, damping: 20, duration: 0.5 }}
               />
               
               {/* Credentials overlay */}
